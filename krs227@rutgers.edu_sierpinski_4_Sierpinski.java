@@ -1,0 +1,58 @@
+import java.lang.Object;
+
+public class Sierpinski {
+
+    // Height of an equilateral triangle whose sides are of the specified length. 
+    public static double height(double ht1) {
+        double ht2 = (ht1 / 2) * Math.sqrt(3);
+        return ht2;
+    }
+
+    // Draws a filled equilateral triangle whose bottom vertex is (x, y) 
+    // of the specified side length. 
+    public static void filledTriangle(double x, double y, double length) {      
+        double[] xVal = {x, (x + length/2), (x - length/2) };
+        double[] yVal = {y, (y + height(length)), (y + height(length)) };
+
+        StdDraw.filledPolygon(xVal, yVal);
+    }
+
+    // Draws a Sierpinski triangle of order n, such that the largest filled 
+    // triangle has bottom vertex (x, y) and sides of the specified length. 
+
+    public static void sierpinski(int n, double x, double y, double length) {
+        if ( n == 1 ) {
+            filledTriangle(x, y, length);
+        } else {
+            sierpinski(n-1, (x - length/2), y, length/2);
+            sierpinski(n-1, (x + length/2), y, length/2);
+            sierpinski(n-1, x, (y + height(length)), length/2 );    
+            filledTriangle(x, y, length);
+        }
+
+    }
+
+    // Takes an integer command-line argument n; 
+    // draws the outline of an equilateral triangle (pointed upwards) of length 1; 
+    // whose bottom-left vertex is (0, 0) and bottom-right vertex is (1, 0); and 
+    // draws a Sierpinski triangle of order n that fits snugly inside the outline. 
+    public static void main(String[] args) {
+
+       int sierpN   = Integer.parseInt(args[0]);
+
+       double x1   = 1;
+       double y1   = 0;
+       double length = 1;
+
+       double[] x = {0, 0.5, x1};
+       double[] y = {0, height(length), y1};
+
+       StdDraw.polygon(x, y);
+       
+       sierpinski(sierpN, 0.5, 0, length/2);
+       //double x2 = Double.parseDouble( args[1] );
+       //double y2 = Double.parseDouble( args[2] );
+       //double length2 = Double.parseDouble( args[3] );
+       //sierpinski(sierpN, x2, y2, length2);
+    }
+}
