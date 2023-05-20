@@ -1,0 +1,94 @@
+public class PolygonTransform {
+    
+    // Returns a new array that is an exact coopy of the given array.
+    // The given array is not mutated.
+    public static double[] copy(double[] array) {
+
+        double[] dupl = new double[array.length];
+        for(int a = 0; a < array.length; a++) {
+            dupl[a] = array[a];
+        }
+        return dupl;
+
+    }
+
+    // Scales the given polygon by the factor alpha.
+    public static void scale(double[] x, double[] y, double alpha) {
+
+        for(int a = 0; a < x.length; a++) {
+            x[a] = alpha * x[a];
+        }
+        for(int b = 0; b < y.length; b++) {
+            y[b] = alpha * y[b];
+        }
+
+    }
+
+    // Translates the given polygon by (dx, dy).
+    public static void translate(double[] x, double[] y, double dx, double dy) {
+        
+        for(int d = 0; d < x.length; d++) {
+            x[d] += dx;
+        }
+        for(int e = 0; e < y.length; e++) {
+            y[e] += dy;
+        }
+
+    }
+
+    // Rotates the given polygon thetha degrees counterclockwise, about the origin.
+    public static void rotate(double[] x, double[] y, double theta) {
+        final int ARR_LEN = x.length;
+
+        double[] x2 = new double[ARR_LEN];
+        double[] y2 = new double[ARR_LEN];
+        
+        for(int i = 0; i < ARR_LEN; i++) {
+           x2[i] = (x[i] * Math.cos(Math.toRadians(theta))) - (y[i] * Math.sin(Math.toRadians(theta)));
+           y2[i] = (y[i] * Math.cos(Math.toRadians(theta))) + (x[i] * Math.sin(Math.toRadians(theta)));
+        }
+
+        for(int i = 0; i < ARR_LEN; i++) {
+            x[i] = x2[i];
+            y[i] = y2[i];
+         }
+
+    }
+
+    // Tests each of the API methods by directly calling them.
+    public static void main(String[] args) {
+
+        // scale method
+        /*StdDraw.setScale(-5.0, +5.0); 
+        double[] x = { 0, 1, 1, 0 }; 
+        double[] y = { 0, 0, 2, 1 }; 
+        double alpha = 2.0; 
+        StdDraw.setPenColor(StdDraw.RED); 
+        StdDraw.polygon(x, y);
+        scale(x, y, alpha); 
+        StdDraw.setPenColor(StdDraw.BLUE);
+        StdDraw.polygon(x, y);*/
+
+        // translate method
+        /*StdDraw.setScale(-5.0, +5.0); 
+        double[] x = { 0, 1, 1, 0 }; 
+        double[] y = { 0, 0, 2, 1 }; 
+        double dx = 2.0, dy = 1.0; 
+        StdDraw.setPenColor(StdDraw.RED); 
+        StdDraw.polygon(x, y); 
+        translate(x, y, dx, dy); 
+        StdDraw.setPenColor(StdDraw.BLUE);
+        StdDraw.polygon(x, y);*/
+
+        // rotate method
+        StdDraw.setScale(-5.0, +5.0); 
+        double[] x = { 0, 1, 1, 0 }; 
+        double[] y = { 0, 0, 2, 1 }; 
+        double theta = 45.0; 
+        StdDraw.setPenColor(StdDraw.RED); 
+        StdDraw.polygon(x, y); 
+        rotate(x, y, theta); 
+        StdDraw.setPenColor(StdDraw.BLUE);
+        StdDraw.polygon(x, y);
+    }
+}
