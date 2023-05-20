@@ -1,0 +1,21 @@
+public class TwoSmallest  {
+    public static void main(String[] args) {
+        double smallest = Double.MAX_VALUE;
+        double secondsmallest = Double.MAX_VALUE;
+        for(int i = 0; i < args.length; i++) {
+            double var = Double.parseDouble(args[i]);
+            if(var < smallest) {
+                smallest = var;
+            }
+        }
+        for(int i = 0; i < args.length - 1; i++) {
+            double var = Double.parseDouble(args[i]);
+            double var2 = Double.parseDouble(args[i + 1]);
+            if(var <= var2 &&  var >= smallest) {
+                secondsmallest = var;
+            }
+        }
+        System.out.println(smallest);
+        System.out.println(secondsmallest);
+    }
+}
