@@ -1,0 +1,29 @@
+public class LargestOfFive {
+
+    public static void main(String[] args) {
+        
+        int a = Integer.parseInt(args[0]);
+        int b = Integer.parseInt(args[1]);
+        int c = Integer.parseInt(args[2]);
+        int d = Integer.parseInt(args[3]);
+        int e = Integer.parseInt(args[4]);
+        int largest = Integer.MIN_VALUE;
+        
+        if ( e > largest ) {
+            largest = e;
+        }
+        if ( d > largest ) {
+            largest = d;
+        }
+        if ( c > largest ) {
+            largest = c;
+        }
+        if ( b > largest ) {
+            largest = b;
+        }
+        if( a > largest ) {
+            largest = a;
+        }
+        System.out.println(largest);
+    }
+}
