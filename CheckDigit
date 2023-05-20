@@ -1,0 +1,33 @@
+public class CheckDigit {
+    public static void main(String[] args) {
+        long upc_bar = Long.parseLong( args[0] );
+        long digit1 = 0;
+        long newNum = 0;
+        long digit2 = 0;
+        long newNum2 = 0;
+        long totalNum = 0;
+        
+        while(upc_bar > 0) {
+            digit1 = upc_bar % 10;
+            newNum += digit1;
+            upc_bar /= 10;
+            upc_bar /= 10;
+        }
+        newNum %= 10;
+
+        upc_bar = Long.parseLong( args[0] );  
+        while(upc_bar > 0) {
+            upc_bar /= 10;
+            digit2 = upc_bar % 10;
+            newNum2 += digit2;
+            upc_bar /= 10;
+        }
+        newNum2 %= 10;
+        newNum2 *= 3;
+        newNum2 %= 10;
+
+        totalNum = newNum + newNum2;
+        totalNum = totalNum % 10;
+        System.out.println(totalNum);
+    }
+}
